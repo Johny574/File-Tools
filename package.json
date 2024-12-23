@@ -3,13 +3,11 @@
     "displayName": "Johny Loots - File Tools",
     "version": "1.0.0",
     "description": "File Tools",
-    "dependencies": {
-    },
+    "dependencies": {},
     "author": {
         "name": "Johny Loots",
-        "email": "johnyloots@protonmail.com",
+        "email": "johnyloots@protonmail.com"
     },
-    
     "homepage": "https://github.com/Johny574",
     "repository": {
         "type": "git",
