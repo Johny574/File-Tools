@@ -58,7 +58,7 @@ public class FileTools : EditorWindow
     }
 
 
-    [MenuItem("Tools/FileTools")]
+    [MenuItem("Tools/File Tools")]
     public static void CreateFileToolMenu()
     {
         FileTools menu = GetWindow<FileTools>();

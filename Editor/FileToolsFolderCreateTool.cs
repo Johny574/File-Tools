@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FileToolsFolderCreator : FileToolsState
 {
-    private string _stripString ="";
+    private string _stripString = "";
     private string _outputPath;
     private string _pathHandle = "";
 
@@ -37,11 +37,7 @@ public class FileToolsFolderCreator : FileToolsState
         foreach (var obj in Selection.objects)
         {
             _pathHandle = "";
-            _pathHandle = Path.Join(_outputPath, obj.name);
-            if (_stripString != "")
-            {
-                _pathHandle.Replace(_stripString, "");
-            }
+            _pathHandle = Path.Join(_outputPath, obj.name.Replace(_stripString, ""));
             CreateDirectory(_pathHandle);
         }        
     }

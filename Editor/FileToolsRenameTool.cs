@@ -78,7 +78,9 @@ public class FileToolsRenameTool : FileToolsState
             RenameAsset(objectPath, objectPath.Replace(obj.name, _newName), _newName);     
         }
 
+        AssetDatabase.SaveAssets();
         AssetDatabase.StopAssetEditing();
+        AssetDatabase.Refresh();
     }
 
     void ProcessObjectData(string objectPath)

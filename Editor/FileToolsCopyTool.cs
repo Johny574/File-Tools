@@ -30,12 +30,13 @@ public class FileToolsCopyTool : FileToolsState
             Start();
         }
         EditorGUILayout.EndVertical();
+        _window.SO.ApplyModifiedProperties();
     }
 
     public override void Start()
     {
         _selection = Selection.objects;
-            
+        AssetDatabase.StartAssetEditing();
         foreach (var dir in Directories)
         {
             foreach (var obj in _selection)
@@ -44,7 +45,11 @@ public class FileToolsCopyTool : FileToolsState
                 var splitPath = path.Split("/");
                 var newPath = Path.Join(AssetDatabase.GetAssetPath(dir), splitPath[splitPath.Length-1]);
                 AssetDatabase.CopyAsset(path, newPath);
+                Debug.Log(newPath);
             }
         }
+        AssetDatabase.SaveAssets();
+        AssetDatabase.StopAssetEditing();
+        AssetDatabase.Refresh();
     }
 }
