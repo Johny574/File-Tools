@@ -1,4 +1,4 @@
-# Unity-File-Tools
+# File-Tools
 
 <h3>This package is part of my unity tools collection. </h3>
 
