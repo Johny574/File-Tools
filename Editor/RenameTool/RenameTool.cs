@@ -97,7 +97,7 @@ public class RenameTool
         if (_settings.Key != "" && _settings.Key != null)
         {
             n = n.Replace(_settings.Key, _settings.Value);
-            Assert.That(!n.Contains(_settings.Value));
+            Assert.That(!n.Contains(_settings.Key));
         } 
         return n;
     }
