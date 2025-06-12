@@ -1,3 +1,4 @@
 {
-	"name": "FileTools"
+	"name": "FileTools",
+	"includePlatforms":["Editor"]
 }

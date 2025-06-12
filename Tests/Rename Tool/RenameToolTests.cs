@@ -1,7 +1,9 @@
+using System.Collections;
 using System.IO;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 class RenameToolTests
 {
@@ -10,38 +12,45 @@ class RenameToolTests
     private string _testPath = "Assets/RenameTool";
     private string _testFile = "test.txt";
 
-    [SetUp]
-    public void SetUp()
-    { 
+    [UnitySetUp]
+    public IEnumerator SetUp()
+    {
         RenameToolSettings settings = new RenameToolSettings("key", "value", "prefix", "suffix", true, true, true);
         _renameTool = new RenameTool(settings, "prefix", "suffix");
 
-        FolderCreateTool.CreateDirectory(_testPath);   
+        FolderCreateTool.CreateDirectory(_testPath);
+        yield return null;
+    }
 
+    [UnityTest]
+    public IEnumerator RenamedCorrectly()
+    {
         using (StreamWriter writer = new StreamWriter(Path.Join(_testPath, _testFile), true))
         {
             writer.WriteLine("Hello World! this is a test file.");
         }
 
-        AssetDatabase.Refresh();
-    }
+        AssetDatabase.ImportAsset(Path.Join(_testPath, _testFile));
+        yield return null;
 
-    [Test]
-    public void RenamedCorrectly()
-    {
-        var testFile = new Object[1]{ AssetDatabase.LoadAssetAtPath<TextAsset>(_testPath + _testFile) };
+        AssetDatabase.Refresh();
+        yield return null;
+
+        var o = AssetDatabase.LoadAssetAtPath<TextAsset>(Path.Join(_testPath, _testFile).Replace("\\", "/"));
+        var testFile = new Object[1]{ o };
         _renameTool.Start(testFile);
     }
 
-    [Test]
-    public void NoObjectsSelectedThrowsException()
+    [UnityTest]
+    public IEnumerator NoObjectsSelectedThrowsException()
     {
         Assert.Throws<System.Exception>(() => _renameTool.Start(null));
+        yield return null;
     }
 
 
-    [TearDown]
-    public void TearDown()
+    [UnityTearDown]
+    public IEnumerator TearDown()
     {
         if (File.Exists(Path.Join(_testPath, _testFile)))
         {
@@ -49,5 +58,6 @@ class RenameToolTests
         }
 
         Directory.Delete(_testPath, true);
+        yield return null;
     }
 }

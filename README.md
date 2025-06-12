@@ -12,4 +12,4 @@
 <h4>How to get started.</h4>
 Open Unity -> Window -> Package Manager -> Install from git URL and add.
 
-[https://github.com/Johny574/Unity-File-Tools.git](https://github.com/Johny574/Unity-File-Tools.git)
+[https://github.com/Johny574/File-Tools.git](https://github.com/Johny574/File-Tools.git)
