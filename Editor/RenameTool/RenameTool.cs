@@ -1,6 +1,7 @@
 using System;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEngine;
 
 public class RenameTool
 {
@@ -18,6 +19,7 @@ public class RenameTool
     /// <summary>
     /// Renames all files.
     /// </summary>
+    /// 
     public void Start(UnityEngine.Object[] objects)
     {
         if (objects == null)
@@ -65,24 +67,18 @@ public class RenameTool
         if (_settings.UseParentNameAsValue)
         {
             _settings.Value = parentDirectory;
-            
-            Assert.AreEqual(_settings.Value, parentDirectory);
         }
 
         // Add the parent directory before the prefix.
         if (_settings.AppendParentNameToPrefix)
         {
             _prefix = parentDirectory + _prefix;
-
-            Assert.IsTrue(_prefix.StartsWith(parentDirectory));
         }
 
         // Add the parent directory after the suffix.
         if (_settings.AppendParentNameToSuffix)
         {
             _suffix = _suffix + parentDirectory;
-
-            Assert.IsTrue(_suffix.EndsWith(parentDirectory));
         }
     }
 
@@ -90,14 +86,13 @@ public class RenameTool
     /// Perform needle in haystack replace operation.
     /// </summary>
     /// <param name="name">Name of file.</param>
-    /// <returns></returns>
+    /// <returns>The new replaced string</returns>
     public string ReplaceNeedleHaystack(string name)
     {
         string n = name;
         if (_settings.Key != "" && _settings.Key != null)
         {
             n = n.Replace(_settings.Key, _settings.Value);
-            Assert.That(!n.Contains(_settings.Key));
         } 
         return n;
     }

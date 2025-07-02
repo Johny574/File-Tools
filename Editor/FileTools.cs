@@ -28,10 +28,10 @@ public class FileTools : EditorWindow
     {
         _menus = new()
         {
-            {"Copy Tool", new CopyToolMenu(new SerializedObject(this))},
-            {"Delete Tool", new DeleteToolMenu()},
-            {"Rename Tool", new RenameToolMenu()},
-            {"Folder Creator", new FolderCreateToolMenu()}
+            {"Copy Tool",           new CopyToolMenu(new SerializedObject(this))},
+            {"Delete Tool",         new DeleteToolMenu()},
+            {"Rename Tool",         new RenameToolMenu()},
+            {"Folder Creator",      new FolderCreateToolMenu()}
         };
 
         CopyTool = _menus["Copy Tool"] as CopyToolMenu;
